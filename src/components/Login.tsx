@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { supabase } from '../lib/supabase';
-import { ShieldAlert, ArrowRight, Lock, Mail, Loader2, Sparkles, Database } from 'lucide-react';
+import { ShieldAlert, ArrowRight, Lock, Mail, Loader2, Database } from 'lucide-react';
 import mebachaLogo from '../assets/mebacha-1000.png';
 
 interface LoginProps {
@@ -8,8 +8,8 @@ interface LoginProps {
 }
 
 export const Login: React.FC<LoginProps> = ({ onSuccess }) => {
-  const [email, setEmail] = useState('admin@mebacha.com');
-  const [password, setPassword] = useState('MebachaAdmin2026!');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
@@ -44,10 +44,6 @@ export const Login: React.FC<LoginProps> = ({ onSuccess }) => {
     performSignIn(email, password);
   };
 
-  const handleQuickAdminSignIn = () => {
-    performSignIn('admin@mebacha.com', 'MebachaAdmin2026!');
-  };
-
   return (
     <div className="min-h-screen bg-[#F4F6F8] flex flex-col justify-center items-center p-4 sm:p-6 antialiased">
       <div className="w-full max-w-md">
@@ -76,10 +72,10 @@ export const Login: React.FC<LoginProps> = ({ onSuccess }) => {
           <div className="p-3 bg-[#F4F6F8] border border-[#D1D5DB] rounded-[4px] flex items-center justify-between text-xs font-mono">
             <div className="flex items-center space-x-2">
               <Database className="w-4 h-4 text-[#006838]" />
-              <span className="font-semibold text-[#14181D]">TELEMETRY: nkzccgjsfioizogxyuxl</span>
+              <span className="font-semibold text-[#14181D]">OPERATIONS DISPATCH GATEWAY</span>
             </div>
             <span className="px-2 py-0.5 bg-[#E6F4EC] text-[#006838] border border-[#A7F3D0] text-[10px] font-bold uppercase rounded-[2px]">
-              ONLINE
+              ENCRYPTED
             </span>
           </div>
 
@@ -94,7 +90,8 @@ export const Login: React.FC<LoginProps> = ({ onSuccess }) => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@mebacha.com"
+                  placeholder="admin@mebacha.et"
+                  autoComplete="username"
                   required
                   className="w-full bg-[#FFFFFF] border border-[#D1D5DB] rounded-[4px] pl-10 pr-4 py-2.5 text-sm text-[#14181D] placeholder-[#9CA3AF] focus:outline-none focus:border-[#006838] focus:ring-1 focus:ring-[#006838] transition min-h-[44px]"
                 />
@@ -112,6 +109,7 @@ export const Login: React.FC<LoginProps> = ({ onSuccess }) => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
+                  autoComplete="current-password"
                   required
                   className="w-full bg-[#FFFFFF] border border-[#D1D5DB] rounded-[4px] pl-10 pr-4 py-2.5 text-sm text-[#14181D] placeholder-[#9CA3AF] focus:outline-none focus:border-[#006838] focus:ring-1 focus:ring-[#006838] transition min-h-[44px]"
                 />
@@ -137,27 +135,6 @@ export const Login: React.FC<LoginProps> = ({ onSuccess }) => {
               )}
             </button>
           </form>
-
-          {/* Quick Real Admin Sign-In */}
-          <div className="pt-4 border-t border-[#D1D5DB]">
-            <div className="text-center mb-2.5">
-              <span className="text-[10px] font-mono font-semibold text-[#5A6470] uppercase tracking-widest">
-                Field Quick Login Bypass
-              </span>
-            </div>
-            <button
-              type="button"
-              disabled={loading}
-              onClick={handleQuickAdminSignIn}
-              className="w-full flex items-center justify-center space-x-2 bg-[#F4F6F8] hover:bg-[#E5E7EB] text-[#14181D] border border-[#D1D5DB] rounded-[4px] py-2.5 px-4 text-xs font-mono font-semibold uppercase tracking-wider transition min-h-[42px] disabled:opacity-50"
-            >
-              <Sparkles className="w-4 h-4 text-[#866128]" />
-              <span>1-Click Super Admin Sign In</span>
-            </button>
-            <p className="text-[10px] font-mono text-[#5A6470] text-center mt-2">
-              Authenticates admin@mebacha.com via verified Supabase session.
-            </p>
-          </div>
         </div>
 
         <div className="mt-6 text-center text-xs font-mono text-[#5A6470] uppercase">

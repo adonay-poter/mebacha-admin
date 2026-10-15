@@ -143,7 +143,7 @@ export const Layout: React.FC<LayoutProps> = ({
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-[11px] font-mono font-bold text-[#14181D] truncate">
-                {user?.email || 'admin@mebacha.com'}
+                {user?.email || 'admin@mebacha.et'}
               </p>
               <p className="text-[9px] font-mono text-[#5A6470] uppercase">Mebacha Admin Guard</p>
             </div>
